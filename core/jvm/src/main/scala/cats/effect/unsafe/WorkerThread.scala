@@ -549,6 +549,7 @@ private[effect] final class WorkerThread[P <: AnyRef](
           if (pool.blockedThreadDetectionEnabled) {
             // TODO prefetch pool.workerThread or Thread.State.BLOCKED ?
             // TODO check that branch elimination makes it free when off
+            val idx = index
             var otherIdx = random.nextInt(pool.getWorkerThreads.length)
             if (otherIdx == idx) {
               otherIdx =
