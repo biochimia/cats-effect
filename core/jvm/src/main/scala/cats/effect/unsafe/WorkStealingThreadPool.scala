@@ -132,7 +132,7 @@ private[effect] final class WorkStealingThreadPool[P <: AnyRef](
   private[this] val state: AtomicInteger = new AtomicInteger(threadCount << UnparkShift)
 
   private[unsafe] val cachedThreads: ConcurrentSkipListSet[WorkerThread[P]] =
-    new ConcurrentSkipListSet(Comparator.comparingInt[WorkerThread[P]](_.nameIndex))
+    new ConcurrentSkipListSet(Comparator.comparingInt[WorkerThread[P]](_.blockedWorkerIndex))
 
   /**
    * The shutdown latch of the work stealing thread pool.
